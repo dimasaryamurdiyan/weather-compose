@@ -1,6 +1,7 @@
 package com.singaludra.weatherapp.data.remote.response
 
 import com.google.gson.annotations.SerializedName
+import com.singaludra.weatherapp.domain.model.Forecast
 
 data class ForecastResponse(
     @SerializedName("list") val weatherList: List<ForecastWeatherResponse>,
@@ -48,3 +49,34 @@ data class ForecastWeatherResponse (
         @SerializedName("all") val cloudiness: Int
     )
 }
+
+fun ForecastResponse.mapToDomain(): Forecast =
+    Forecast(
+        weatherList = this.weatherList.map {
+             Forecast.ForecastWeather(
+                 weatherData = Forecast.ForecastWeather.Main(
+                     it.weatherData.temp,
+                     it.weatherData.feelsLike,
+                     it.weatherData.pressure,
+                     it.weatherData.humidity
+                 ),
+                weatherStatus = it.weatherStatus.map { weather ->
+                    Forecast.ForecastWeather.Weather(
+                        mainDescription = weather.mainDescription,
+                        description = weather.description
+                    )
+                },
+                 wind = Forecast.ForecastWeather.Wind(it.wind.speed),
+                 date = it.date,
+                 cloudiness = Forecast.ForecastWeather.Cloudiness(it.cloudinessDto.cloudiness)
+             )
+        },
+        cityDtoData = Forecast.City(
+            cityName = this.cityDtoData.cityName,
+            country = this.cityDtoData.country,
+            weatherImage = 0,
+            temp = this.weatherList[0].weatherData.temp,
+            longitude = this.cityDtoData.coordinate.longitude,
+            latitude = this.cityDtoData.coordinate.latitude
+        )
+    )
