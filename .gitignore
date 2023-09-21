@@ -1,0 +1,47 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+/buildSrc/build/pluginUnderTestMetadata/
+
+*.iml
+.gradle
+.gradle/file-system.probe
+.gradle/buildOutputCleanup
+.gradle/8.0
+/local.properties
+/.idea
+/.idea/misc.xml
+/.idea/vcs.xml
+/.idea/gradle.xml
+/.idea/inspectionProfiles/
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+build/
+
+**/build
+**/build/tmp
+**/.idea/gradle.xml
+**/.idea/inspectionProfiles
+
+.gradle/
