@@ -13,10 +13,12 @@ The app was developed with latest modern android development :
 - ***Flow***
 - ***Room***
 - ***Version Catalog***
+- ***Unit test using Mockito***
 - ***Android Min SDK: 24***
 - ***Android Target SDK: 33***
-- ***Min Android Version: VERSION_17***
+- ***Min Java Version: VERSION_17***
 
+If you want to check the git log, you can check to [this-github-weather-project](https://github.com/dimasaryamurdiyan/weather-compose)
 
 ## Android App Architecture - Guideline to App Architecture
 ![ass-png](./assets/arch-weather.png)
