@@ -13,6 +13,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.singaludra.weatherapp.presentation.detail.DetailForecastViewModel
 import com.singaludra.weatherapp.presentation.home.HomeViewModel
 import com.singaludra.weatherapp.presentation.navigation.NavGraph
 import com.singaludra.weatherapp.presentation.search.SearchCityViewModel
@@ -23,6 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val homeViewModel: HomeViewModel by viewModels()
     private val searchCityViewModel: SearchCityViewModel by viewModels()
+    private val detailForecastViewModel: DetailForecastViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -34,7 +36,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     NavGraph(
                         homeViewModel = homeViewModel,
-                        searchCityViewModel = searchCityViewModel
+                        searchCityViewModel = searchCityViewModel,
+                        detailForecastViewModel = detailForecastViewModel
                     )
                 }
             }

@@ -21,3 +21,9 @@ object MainWeatherConditions {
 }
 
 const val degree = "°C"
+const val temp = "🌡 TEMP"
+const val feels_like = "🌡 FEELS LIKE"
+const val cloudiness = "☁ CLOUDINESS"
+const val humidity = "💧 HUMIDITY"
+const val wind = "🌬 WIND"
+const val pressure = "⏲ PRESSURE"

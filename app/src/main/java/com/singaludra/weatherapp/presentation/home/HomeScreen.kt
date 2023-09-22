@@ -36,14 +36,16 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.singaludra.weatherapp.domain.model.Forecast
 import com.singaludra.weatherapp.presentation.common.CityWeatherCard
+import com.singaludra.weatherapp.presentation.navigation.Screen
 import com.singaludra.weatherapp.utils.degree
 import com.singaludra.weatherapp.utils.toCelcius
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(viewModel: HomeViewModel, onNavigateToSearchCityScreen: () -> Unit) {
+fun HomeScreen(navController: NavController, viewModel: HomeViewModel, onNavigateToSearchCityScreen: () -> Unit) {
     val myCitiesState by viewModel.myCitiesState.collectAsState()
 
     Scaffold(
@@ -77,13 +79,14 @@ fun HomeScreen(viewModel: HomeViewModel, onNavigateToSearchCityScreen: () -> Uni
             HomeContent(
                 viewModel = viewModel,
                 myCitiesState = myCitiesState,
+                navController
             )
         }
     }
 }
 
 @Composable
-fun HomeContent(viewModel: HomeViewModel, myCitiesState: MyCitiesState) {
+fun HomeContent(viewModel: HomeViewModel, myCitiesState: MyCitiesState, navController: NavController) {
     val context = LocalContext.current
     Column(
         modifier = Modifier
@@ -112,7 +115,7 @@ fun HomeContent(viewModel: HomeViewModel, myCitiesState: MyCitiesState) {
                         Text(text = "No data found")
                     }
                 } else {
-                    CityListSection(myCitiesState.forecast, viewModel)
+                    CityListSection(myCitiesState.forecast, viewModel, navController)
                 }
             }
             is MyCitiesState.Error -> {
@@ -123,7 +126,7 @@ fun HomeContent(viewModel: HomeViewModel, myCitiesState: MyCitiesState) {
 }
 
 @Composable
-fun CityListSection(cityList: List<Forecast.City>, viewModel: HomeViewModel) {
+fun CityListSection(cityList: List<Forecast.City>, viewModel: HomeViewModel, navController: NavController) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(vertical = 16.dp)
@@ -139,7 +142,7 @@ fun CityListSection(cityList: List<Forecast.City>, viewModel: HomeViewModel) {
                 country = it.country,
                 description = it.description,
                 weatherImage = it.weatherImage,
-                onClick = { }
+                onClick = { navController.navigate("detail".plus("/${it.cityName}"))}
             )
         }
     }

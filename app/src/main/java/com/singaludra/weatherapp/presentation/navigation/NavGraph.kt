@@ -6,9 +6,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.singaludra.weatherapp.presentation.detail.DetailForecastScreen
+import com.singaludra.weatherapp.presentation.detail.DetailForecastViewModel
 import com.singaludra.weatherapp.presentation.home.HomeScreen
 import com.singaludra.weatherapp.presentation.home.HomeViewModel
 import com.singaludra.weatherapp.presentation.search.SearchCityScreen
@@ -18,11 +22,14 @@ import com.singaludra.weatherapp.presentation.search.SearchCityViewModel
 sealed class Screen(val route: String) {
     object HomeScreen : Screen(Routes.homeScreen)
     object SearchCityScreen : Screen(Routes.searchCityScreen)
+
+    object DetailForecastScreen: Screen(Routes.DETAIL_FORECAST)
 }
 
 object Routes {
     const val homeScreen = "Home Screen"
     const val searchCityScreen = "Search City Screen"
+    const val DETAIL_FORECAST = "detail/{cityName}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,7 +37,8 @@ object Routes {
 fun NavGraph(
     startDestination: String = Screen.HomeScreen.route,
     homeViewModel: HomeViewModel,
-    searchCityViewModel: SearchCityViewModel
+    searchCityViewModel: SearchCityViewModel,
+    detailForecastViewModel: DetailForecastViewModel
 ) {
     val navController = rememberNavController()
 
@@ -43,7 +51,9 @@ fun NavGraph(
             startDestination = startDestination
         ) {
             composable(Screen.HomeScreen.route) {
-                HomeScreen(homeViewModel) { navController.navigate(Screen.SearchCityScreen.route) }
+                HomeScreen(navController, homeViewModel) {
+                    navController.navigate(Screen.SearchCityScreen.route)
+                }
             }
             composable(Screen.SearchCityScreen.route) {
                 SearchCityScreen(navController, searchCityViewModel) {
@@ -51,6 +61,17 @@ fun NavGraph(
                         launchSingleTop = true
                         popUpTo(Screen.HomeScreen.route)
                     }
+                }
+            }
+            composable(
+                Screen.DetailForecastScreen.route,
+                arguments = listOf(navArgument("cityName"){
+                    type = NavType.StringType
+                })
+            ) {
+                val cityName = it.arguments?.getString("cityName")
+                cityName.let {
+                    DetailForecastScreen(navController = navController, cityName = cityName, detailForecastViewModel)
                 }
             }
         }

@@ -10,6 +10,6 @@ interface ApiService {
     suspend fun getForecastDataWithCityName(
         @Query("q") cityName: String,
         @Query("APPID") apiKey: String = BuildConfig.API_KEY,
-        @Query("units") units: String = "metcric",
+        @Query("units") units: String = "standard",
     ): ForecastResponse
 }
