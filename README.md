@@ -2,6 +2,8 @@
 
 This is the guide about how this app was developed.
 **This App running with Java Version_17**
+
+
 The app was developed with latest modern android development :
 - ***Kotlin***
 - ***Jetpack Compose***
@@ -18,6 +20,7 @@ The app was developed with latest modern android development :
 
 ## Android App Architecture - Guideline to App Architecture
 ![ass-png](./assets/arch-weather.png)
+
 **Top tip**: A module graph (shown above) can be useful during modularization planning for
 visualizing dependencies between modules.
 
