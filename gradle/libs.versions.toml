@@ -26,6 +26,10 @@ annotation = "1.6.0"
 hilt = "2.47"
 hiltExt = "1.0.0"
 
+#testing
+mockitoCore = "3.11.2"
+coreTesting = "2.1.0"
+coroutine = "1.4.2"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -52,6 +56,9 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+mockito-core = {group = "org.mockito", name= "mockito-core", version.ref="mockitoCore"}
+core-testing = { group = "androidx.arch.core", name ="core-testing", version.ref = "coreTesting"}
+coroutines-test = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutine"}
 
 # Http
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
