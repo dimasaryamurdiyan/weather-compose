@@ -8,4 +8,5 @@ interface IWeatherRepository {
     fun getForecastDataWithCityName(cityName: String): Flow<Resource<Forecast>>
     fun getMyCity(): Flow<List<Forecast.City>>
     suspend fun addCity(city: Forecast.City)
+    suspend fun getSpecificCity(cityName: String): Boolean
 }

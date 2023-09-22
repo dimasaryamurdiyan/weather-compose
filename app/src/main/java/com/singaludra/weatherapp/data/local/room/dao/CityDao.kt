@@ -17,4 +17,7 @@ interface CityDao {
 
     @Query("DELETE FROM city WHERE city = :cityName")
     suspend fun deleteMyCity(cityName: String)
+
+    @Query("SELECT * FROM city WHERE city = :cityName")
+    suspend fun getSpecificCity(cityName: String) : CityEntity?
 }

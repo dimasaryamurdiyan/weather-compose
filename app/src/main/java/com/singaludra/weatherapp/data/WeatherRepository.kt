@@ -10,10 +10,7 @@ import com.singaludra.weatherapp.domain.Resource
 import com.singaludra.weatherapp.domain.model.Forecast
 import com.singaludra.weatherapp.domain.model.mapToEntity
 import com.singaludra.weatherapp.domain.repository.IWeatherRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -44,6 +41,10 @@ class WeatherRepository @Inject constructor(
 
     override suspend fun addCity(city: Forecast.City) {
         cityDao.addCity(city.mapToEntity())
+    }
+
+    override suspend fun getSpecificCity(cityName: String): Boolean {
+        return cityDao.getSpecificCity(cityName) != null
     }
 
 }
