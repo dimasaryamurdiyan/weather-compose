@@ -28,7 +28,10 @@ data class CityEntity(
     var country: String,
 
     @ColumnInfo(name = "weather_image")
-    var weatherImage: Int
+    var weatherImage: Int,
+
+    @ColumnInfo(name = "description")
+    var description: String,
 )
 
 fun CityEntity.mapToDomain(): Forecast.City {
@@ -38,6 +41,7 @@ fun CityEntity.mapToDomain(): Forecast.City {
         country = this.country,
         weatherImage = this.weatherImage,
         longitude = this.longitude,
-        latitude = this.latitude
+        latitude = this.latitude,
+        description = this.description
     )
 }

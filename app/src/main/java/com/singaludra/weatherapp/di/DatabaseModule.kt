@@ -3,6 +3,7 @@ package com.singaludra.weatherapp.di
 import android.content.Context
 import androidx.room.Room
 import com.singaludra.weatherapp.data.local.room.AppDatabase
+import com.singaludra.weatherapp.data.local.room.dao.CityDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,4 +22,9 @@ object DatabaseModule {
             .allowMainThreadQueries()
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun bindMyCityDao(weatherDatabase: AppDatabase): CityDao =
+        weatherDatabase.cityDao()
 }

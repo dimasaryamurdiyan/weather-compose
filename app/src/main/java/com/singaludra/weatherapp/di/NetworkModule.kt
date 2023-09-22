@@ -1,5 +1,6 @@
 package com.singaludra.weatherapp.di
 
+import com.singaludra.weatherapp.BuildConfig
 import com.singaludra.weatherapp.data.remote.network.ApiService
 import dagger.Module
 import dagger.Provides

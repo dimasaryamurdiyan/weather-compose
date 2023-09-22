@@ -40,7 +40,8 @@ data class Forecast(
         var country: String,
         var weatherImage: Int,
         var longitude: Double,
-        var latitude: Double
+        var latitude: Double,
+        var description: String
     )
 }
 
@@ -51,7 +52,8 @@ fun Forecast.City.mapToEntity() : CityEntity {
         country = this.country,
         weatherImage = this.weatherImage,
         longitude = this.longitude,
-        latitude = this.latitude
+        latitude = this.latitude,
+        description  = this.description
     )
 }
 

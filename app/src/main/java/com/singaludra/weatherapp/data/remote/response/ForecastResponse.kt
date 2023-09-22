@@ -77,6 +77,7 @@ fun ForecastResponse.mapToDomain(): Forecast =
             weatherImage = 0,
             temp = this.weatherList[0].weatherData.temp,
             longitude = this.cityDtoData.coordinate.longitude,
-            latitude = this.cityDtoData.coordinate.latitude
+            latitude = this.cityDtoData.coordinate.latitude,
+            description = this.weatherList[0].weatherStatus[0].mainDescription
         )
     )
